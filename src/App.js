@@ -12,6 +12,7 @@ import Footer from "./components/footer/Footer";
 import axios from "axios";
 
 function App() {
+  const [add, setAdd] = useState([]);
   const [title, setTitle] = useState();
   const [value, setValue] = useState();
   const [loading, setLoading] = useState(true);
@@ -72,6 +73,17 @@ function App() {
     setValue("");
     getUser();
   };
+
+  const handleAdd = () => {
+    const newObj = {
+      name: source[0].name.first,
+      email: source[0].email,
+      phone: source[0].phone,
+      age: source[0].dob.age,
+    };
+    setAdd([...add, newObj]);
+  };
+
   console.log(source);
 
   return (
@@ -140,7 +152,7 @@ function App() {
                 <button onClick={newUser} className="btn" type="button">
                   new user
                 </button>
-                <button className="btn" type="button">
+                <button onClick={handleAdd} className="btn" type="button">
                   add user
                 </button>
               </div>
@@ -155,7 +167,17 @@ function App() {
                   </tr>
                 </thead>
                 <tbody>
-                  <tr className="body-tr"></tr>
+                  {add.map((item) => {
+                    const { name, email, phone, age } = item;
+                    return (
+                      <tr className="body-tr">
+                        <td>{name}</td>
+                        <td>{email}</td>
+                        <td>{phone}</td>
+                        <td>{age}</td>
+                      </tr>
+                    );
+                  })}
                 </tbody>
               </table>
             </div>
