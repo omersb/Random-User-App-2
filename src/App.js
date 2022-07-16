@@ -47,6 +47,15 @@ function App() {
     setValue(source[0].dob.age);
   };
 
+  const handleStreet = () => {
+    setTitle("My addreess is");
+    setValue(`
+    ${source[0].location.city}
+    ${source[0].location.country}
+    ${source[0].location.postcode}
+    `);
+  };
+
   const newUser = () => {
     setLoading(true);
     setTitle("");
@@ -95,7 +104,11 @@ function App() {
                     id="iconImg"
                   />
                 </button>
-                <button className="icon" data-label="street">
+                <button
+                  onClick={handleStreet}
+                  className="icon"
+                  data-label="street"
+                >
                   <img src={mapSvg} alt="map" id="iconImg" />
                 </button>
                 <button className="icon" data-label="phone">
