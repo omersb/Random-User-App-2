@@ -12,7 +12,7 @@ import Footer from "./components/footer/Footer";
 import axios from "axios";
 
 function App() {
-  const[control,setControl]=useState([])
+  const [control, setControl] = useState([]);
   const [add, setAdd] = useState([]);
   const [title, setTitle] = useState();
   const [value, setValue] = useState();
