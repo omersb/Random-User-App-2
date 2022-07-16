@@ -56,6 +56,16 @@ function App() {
     `);
   };
 
+  const handlePhone = () => {
+    setTitle("My phone is");
+    setValue(source[0].phone);
+  };
+
+  const handlePassword = () => {
+    setTitle("My password is");
+    setValue(source[0].login.password);
+  };
+
   const newUser = () => {
     setLoading(true);
     setTitle("");
@@ -111,10 +121,18 @@ function App() {
                 >
                   <img src={mapSvg} alt="map" id="iconImg" />
                 </button>
-                <button className="icon" data-label="phone">
+                <button
+                  onClick={handlePhone}
+                  className="icon"
+                  data-label="phone"
+                >
                   <img src={phoneSvg} alt="phone" id="iconImg" />
                 </button>
-                <button className="icon" data-label="password">
+                <button
+                  onClick={handlePassword}
+                  className="icon"
+                  data-label="password"
+                >
                   <img src={padlockSvg} alt="lock" id="iconImg" />
                 </button>
               </div>
