@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import mailSvg from "./assets/mail.svg";
 import manSvg from "./assets/man.svg";
 import womanSvg from "./assets/woman.svg";
@@ -9,11 +9,27 @@ import phoneSvg from "./assets/phone.svg";
 import padlockSvg from "./assets/padlock.svg";
 import cwSvg from "./assets/cw.svg";
 import Footer from "./components/footer/Footer";
-
-const url = "https://randomuser.me/api/";
-const defaultImage = "https://randomuser.me/api/portraits/men/75.jpg";
+import axios from "axios";
 
 function App() {
+  const url = "https://randomuser.me/api/";
+  const defaultImage = "https://randomuser.me/api/portraits/men/75.jpg";
+  const [source, setSource] = useState();
+
+  const getUser = async () => {
+    const { data } = await axios.get(url);
+    setSource(data.results);
+  };
+
+  useEffect(() => {
+    getUser();
+  }, []);
+
+  const newUser = () =>{
+    getUser()
+  }
+  
+  console.log(source);
   return (
     <main>
       <div className="block bcg-orange">
@@ -21,7 +37,11 @@ function App() {
       </div>
       <div className="block">
         <div className="container">
-          <img src={defaultImage} alt="random user" className="user-img" />
+          <img
+            src={source ? source[0].picture.medium : defaultImage}
+            alt="random user"
+            className="user-img"
+          />
           <p className="user-title">My ... is</p>
           <p className="user-value"></p>
           <div className="values-list">
@@ -45,7 +65,7 @@ function App() {
             </button>
           </div>
           <div className="btn-group">
-            <button className="btn" type="button">
+            <button className="btn" type="button" onClick={newUser}>
               new user
             </button>
             <button className="btn" type="button">
