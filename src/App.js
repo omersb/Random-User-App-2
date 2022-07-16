@@ -30,11 +30,21 @@ function App() {
 
   const handleName = () => {
     setTitle("My name is");
-    setValue(
-      `${source[0].name.title} 
+    setValue(`
+    ${source[0].name.title}
     ${source[0].name.first}
-     ${source[0].name.last}`
-    );
+    ${source[0].name.last}
+    `);
+  };
+
+  const handleEmail = () => {
+    setTitle("My email is");
+    setValue(source[0].email);
+  };
+
+  const handleAge = () => {
+    setTitle("My age is");
+    setValue(source[0].dob.age);
   };
 
   const newUser = () => {
@@ -71,11 +81,19 @@ function App() {
                     id="iconImg"
                   />
                 </button>
-                <button className="icon" data-label="email">
+                <button
+                  onClick={handleEmail}
+                  className="icon"
+                  data-label="email"
+                >
                   <img src={mailSvg} alt="mail" id="iconImg" />
                 </button>
-                <button className="icon" data-label="age">
-                  <img src={defaultImage} alt="age" id="iconImg" />
+                <button onClick={handleAge} className="icon" data-label="age">
+                  <img
+                    src={source[0].gender == "female" ? womanAgeSvg : manAgeSvg}
+                    alt="age"
+                    id="iconImg"
+                  />
                 </button>
                 <button className="icon" data-label="street">
                   <img src={mapSvg} alt="map" id="iconImg" />
