@@ -21,9 +21,14 @@ function App() {
   const [source, setSource] = useState();
 
   const getUser = async () => {
-    const { data } = await axios.get(url);
-    setSource(data.results);
-    setLoading(false);
+    try {
+      const { data } = await axios.get(url);
+      setSource(data.results);
+      setLoading(false);
+      handleName();
+    } catch (error) {
+      console.log(error);
+    }
   };
   useEffect(() => {
     getUser();
@@ -89,7 +94,14 @@ function App() {
   return (
     <>
       {loading ? (
-        <h1>Loading...</h1>
+        <h1
+          style={{
+            textAlign: "center",
+            marginTop: "5rem",
+          }}
+        >
+          Loading...
+        </h1>
       ) : (
         <main>
           <div className="block bcg-orange">
@@ -103,7 +115,14 @@ function App() {
                 className="user-img"
               />
               <p className="user-title">{title}</p>
-              <p className="user-value">{value} </p>
+              <p className="user-value">
+                {value
+                  ? value
+                  : `
+                  ${source[0].name.title}
+                  ${source[0].name.first}
+                  ${source[0].name.last}`}
+              </p>
               <div className="values-list">
                 <button onClick={handleName} className="icon" data-label="name">
                   <img
