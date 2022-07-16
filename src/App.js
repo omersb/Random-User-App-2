@@ -33,7 +33,7 @@ function App() {
   };
   useEffect(() => {
     getUser();
-  }, []);
+  },[]);
 
   const handleName = () => {
     setTitle("My name is");
@@ -134,7 +134,7 @@ function App() {
                   data-label="name"
                 >
                   <img
-                    src={source[0].gender == "female" ? womanSvg : manSvg}
+                    src={source[0].gender === "female" ? womanSvg : manSvg}
                     alt="user"
                     id="iconImg"
                   />
@@ -152,7 +152,7 @@ function App() {
                   data-label="age"
                 >
                   <img
-                    src={source[0].gender == "female" ? womanAgeSvg : manAgeSvg}
+                    src={source[0].gender === "female" ? womanAgeSvg : manAgeSvg}
                     alt="age"
                     id="iconImg"
                   />
