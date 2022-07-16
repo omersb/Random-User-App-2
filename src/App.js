@@ -12,6 +12,7 @@ import Footer from "./components/footer/Footer";
 import axios from "axios";
 
 function App() {
+  const[control,setControl]=useState([])
   const [add, setAdd] = useState([]);
   const [title, setTitle] = useState();
   const [value, setValue] = useState();
@@ -86,9 +87,10 @@ function App() {
       phone: source[0].phone,
       age: source[0].dob.age,
     };
-    if (!add.includes(newObj)) {
+    if (!control.includes(source[0].email)) {
       setAdd([...add, newObj]);
-    }  
+      setControl([...add, source[0].email]);
+    }
   };
 
   console.log(source);
