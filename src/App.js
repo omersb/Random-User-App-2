@@ -86,7 +86,9 @@ function App() {
       phone: source[0].phone,
       age: source[0].dob.age,
     };
-    setAdd([...add, newObj]);
+    if (!add.includes(newObj)) {
+      setAdd([...add, newObj]);
+    }  
   };
 
   console.log(source);
@@ -124,7 +126,11 @@ function App() {
                   ${source[0].name.last}`}
               </p>
               <div className="values-list">
-                <button onClick={handleName} className="icon" data-label="name">
+                <button
+                  onMouseOver={handleName}
+                  className="icon"
+                  data-label="name"
+                >
                   <img
                     src={source[0].gender == "female" ? womanSvg : manSvg}
                     alt="user"
@@ -132,13 +138,17 @@ function App() {
                   />
                 </button>
                 <button
-                  onClick={handleEmail}
+                  onMouseOver={handleEmail}
                   className="icon"
                   data-label="email"
                 >
                   <img src={mailSvg} alt="mail" id="iconImg" />
                 </button>
-                <button onClick={handleAge} className="icon" data-label="age">
+                <button
+                  onMouseOver={handleAge}
+                  className="icon"
+                  data-label="age"
+                >
                   <img
                     src={source[0].gender == "female" ? womanAgeSvg : manAgeSvg}
                     alt="age"
@@ -146,21 +156,21 @@ function App() {
                   />
                 </button>
                 <button
-                  onClick={handleStreet}
+                  onMouseOver={handleStreet}
                   className="icon"
                   data-label="street"
                 >
                   <img src={mapSvg} alt="map" id="iconImg" />
                 </button>
                 <button
-                  onClick={handlePhone}
+                  onMouseOver={handlePhone}
                   className="icon"
                   data-label="phone"
                 >
                   <img src={phoneSvg} alt="phone" id="iconImg" />
                 </button>
                 <button
-                  onClick={handlePassword}
+                  onMouseOver={handlePassword}
                   className="icon"
                   data-label="password"
                 >
